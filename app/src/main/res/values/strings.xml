@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">IntroScreen</string>
+    <string name="textview">TextView</string>
+    <string name="todo">TODO</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
+
+    <string name="check_remember">Remember Me</string>
+</resources>
