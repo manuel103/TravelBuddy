@@ -119,7 +119,6 @@ public class IntroActivity extends AppCompatActivity {
                     loaddLastScreen();
                 }
 
-
             }
 
             @Override
