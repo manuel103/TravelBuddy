@@ -59,7 +59,7 @@ public class IntroActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        // init views
+        // ini views
         btnNext = findViewById(R.id.btn_next);
         btnGetStarted = findViewById(R.id.btn_get_started);
         tabIndicator = findViewById(R.id.tab_indicator);
