@@ -93,8 +93,6 @@ public class IntroActivity extends AppCompatActivity {
 
                     position++;
                     screenPager.setCurrentItem(position);
-
-
                 }
 
                 if (position == mList.size()-1) { // when we reach to the last screen
@@ -102,14 +100,11 @@ public class IntroActivity extends AppCompatActivity {
                     // TODO : show the GETSTARTED Button and hide the indicator and the next button
 
                     loaddLastScreen();
-
-
                 }
             }
         });
 
         // table layout add change listener
-
 
         tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
@@ -147,7 +142,7 @@ public class IntroActivity extends AppCompatActivity {
 
                 // also we need to save a boolean value to storage so next time when the user runs the app
                 // we could know that they have already checked the intro screen activity
-                // i'm going to use shared preferences to that process
+                // i'm going to use shared preferences to do that process
                 savePrefsData();
                 finish();
 
