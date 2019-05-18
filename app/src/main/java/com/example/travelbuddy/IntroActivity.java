@@ -66,7 +66,7 @@ public class IntroActivity extends AppCompatActivity {
         btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
         tvSkip = findViewById(R.id.tv_skip);
 
-        // fill list screen
+        // fill list screenS
 
         final List<ScreenItem> mList = new ArrayList<>();
         mList.add(new ScreenItem("Get a Travel Buddy","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img1));
