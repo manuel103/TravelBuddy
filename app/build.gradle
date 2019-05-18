@@ -30,4 +30,8 @@ dependencies {
 
     implementation 'com.chaos.view:pinview:1.4.3'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+
 }
+apply plugin: 'com.google.gms.google-services'
