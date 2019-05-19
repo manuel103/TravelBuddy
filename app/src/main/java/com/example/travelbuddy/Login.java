@@ -1,9 +1,11 @@
 package com.example.travelbuddy;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,7 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -20,14 +28,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     EditText etEmail, etPassword;
     TextView tvRegister;
     Button btnLogin;
 
-    // specify path to server
-    final String url_Login = "https://atifnaseem22.000webhostapp.com/login_user.php";
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // make the activity on full screen
@@ -37,91 +46,86 @@ public class Login extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
+        // Hide the action bar
+        getSupportActionBar().hide();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //if user is already logged in...
+        if(firebaseAuth.getCurrentUser() != null){
+            // profile activity
+
+            finish();
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+
+        }
 
         etEmail = (EditText) findViewById(R.id.et_email);
         etPassword = (EditText) findViewById(R.id.et_password);
         btnLogin = (Button) findViewById(R.id.btn_login);
         tvRegister = (TextView) findViewById(R.id.tv_register);
 
+        progressDialog = new ProgressDialog(this);
 
-        tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Login.this,
-                        RegisterActivity.class);
-                startActivity(i);
-            }
-        });
+        btnLogin.setOnClickListener(this);
+        tvRegister.setOnClickListener(this);
 
+}
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Email = etEmail.getText().toString();
-                String Password = etPassword.getText().toString();
+    public void userLogin(){
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
 
-                new LoginUser().execute(Email, Password);
-            }
-        });
+        // Check if the entered strings are empty or not
+        if(TextUtils.isEmpty(email)){
 
-        // Hide the action bar
-        getSupportActionBar().hide();
-    }
+            //if email is empty
+            Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show();
 
-
-    public class LoginUser extends AsyncTask<String, Void, String>{
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String Email = strings[0];
-            String Password = strings[1];
-
-            OkHttpClient okHttpClient = new OkHttpClient();
-            RequestBody formBody = new FormBody.Builder()
-                    .add("user_id", Email)
-                    .add("user_password", Password)
-                    .build();
-
-            Request request = new Request.Builder()
-                    .url(url_Login)
-                    .post(formBody)
-                    .build();
-
-            Response response = null;
-            try{
-                response = okHttpClient.newCall(request).execute();
-                if(response.isSuccessful()){
-                    String result = response.body().string();
-
-                    // look if remember me button is checked
-                    if(result.equalsIgnoreCase("login")){
-                        Intent i = new Intent(Login.this,
-                                DashboardActivity.class);
-                        startActivity(i);
-                        finish();
-                    }else{
-                        showToast("oops! Email and Password Don't Match!");
-                    }
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            return null;
+            // kuzuia function from executing any further
+            return;
         }
+        if(TextUtils.isEmpty(password)){
+
+            //if password is empty
+            Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //if validations are ok...First Show progress dialog!
+        progressDialog.setMessage("Processing please wait ...");
+        progressDialog.show();
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
+                        if(task.isSuccessful()){
+                            //start the profile activity
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        }
+                    }
+                });
+
+
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view == btnLogin){
+            userLogin();
+        }
 
+        if(view == tvRegister){
+            finish();
+            startActivity(new Intent(this, RegisterActivity.class));
+        }
 
-    public void showToast(final String Text){
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(Login.this,
-                        Text, Toast.LENGTH_LONG).show();
-            }
-        });
     }
+
 }
