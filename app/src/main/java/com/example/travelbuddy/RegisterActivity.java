@@ -67,11 +67,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         // Activate gradient animations in Register Activity
 
-        RelativeLayout relativeLayout = findViewById(R.id.gradient);
-        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
+//        RelativeLayout relativeLayout = findViewById(R.id.gradient);
+//        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+//        animationDrawable.setEnterFadeDuration(2000);
+//        animationDrawable.setExitFadeDuration(4000);
+//        animationDrawable.start();
 
         btnRegister = (Button) findViewById(R.id.btn_register);
         etName = (EditText) findViewById(R.id.et_name);
