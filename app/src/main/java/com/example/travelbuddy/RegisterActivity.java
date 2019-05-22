@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //        animationDrawable.start();
 
         btnRegister = (Button) findViewById(R.id.btn_register);
-        etName = (EditText) findViewById(R.id.et_name);
+        //etName = (EditText) findViewById(R.id.et_name);
         etEmail = (EditText) findViewById(R.id.et_reg_email);
         etPassword = (EditText) findViewById(R.id.et_reg_password);
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);

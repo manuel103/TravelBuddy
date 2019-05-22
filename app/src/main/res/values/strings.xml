@@ -2,13 +2,15 @@
     <string name="app_name">Travel Buddy</string>
     <string name="textview">TextView</string>
     <string name="todo">TODO</string>
-    <string name="next">Next</string>
     <string name="get_started">Get Started</string>
     <string name="skip">Skip</string>
 
     <string name="check_remember">Remember Me</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_a_unique_username">Enter a unique username</string>
-    <string name="input_password">Input password</string>
-    <string name="already_registered_sign_in_here">Already Registered? Sign in</string>
+    <string name="input_password">Enter your password</string>
+    <string name="already_registered_sign_in_here">Have an account? <b>Sign in!</b> </string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? <b>Sign up!</b></string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="sign_up">Sign up</string>
 </resources>

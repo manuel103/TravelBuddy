@@ -13,103 +13,114 @@
     <!--app:srcCompat="@drawable/mpay_logo"-->
     <!--/>-->
 
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="wrap_content"
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignStart="@+id/et_name"-->
+    <!--android:layout_alignLeft="@+id/et_name"-->
+    <!--android:layout_marginTop="22dp"-->
+    <!--android:text="Travel Buddy"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="36sp"/>-->
 
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_user"
+    <!--<EditText-->
+    <!--android:id="@+id/et_name"-->
+    <!--android:layout_width="wrap_content"-->
 
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/enter_a_unique_username"
-        android:inputType="textPersonName"
-        android:textColor="#ffffff" />
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/iv_user"-->
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_user"
-        android:layout_alignStart="@+id/et_name"
-        android:layout_alignLeft="@+id/et_name"
-        android:layout_marginTop="22dp"
-        android:text="Name"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+    <!--android:layout_marginTop="40dp"-->
+    <!--android:ems="10"-->
+    <!--android:hint="@string/enter_a_unique_username"-->
+    <!--android:inputType="textPersonName"-->
+    <!--android:textColor="#ffffff" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_name"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/iv_user"-->
+    <!--android:layout_alignStart="@+id/et_name"-->
+    <!--android:layout_alignLeft="@+id/et_name"-->
+    <!--android:layout_marginTop="22dp"-->
+    <!--android:text="Name"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="16sp" />-->
 
 
     <EditText
         android:id="@+id/et_reg_email"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
 
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_name"
 
         android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/enter_your_email"
         android:inputType="textEmailAddress"
-        android:textColor="#000000" />
+        android:textColor="#ffffff"
+        android:textColorHint="#4EFFFFFF"
+        android:backgroundTint="#ffffff"/>
 
     <TextView
         android:id="@+id/tv_reg_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_name"
-        android:layout_alignStart="@+id/et_name"
-        android:layout_alignLeft="@+id/et_name"
         android:layout_marginTop="22dp"
+        android:layout_marginLeft="5dp"
         android:text="Email"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="16sp" />
 
 
     <EditText
         android:id="@+id/et_reg_password"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
 
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_reg_email"
         android:layout_centerHorizontal="false"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
         android:hint="@string/input_password"
         android:inputType="textPassword"
-        android:textColor="#000000" />
+        android:textColor="#ffffff"
+        android:textColorHint="#4EFFFFFF"
+        android:backgroundTint="#ffffff"/>
 
     <TextView
         android:id="@+id/tv_reg_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_reg_email"
-        android:layout_alignStart="@+id/et_name"
-        android:layout_alignLeft="@+id/et_name"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="5dp"
         android:text="Password"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="16sp" />
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="260dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_reg_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/rounded_getstarted"
-        android:text="Register"
-        android:textColor="#ffffff"
+        android:text="@string/sign_up"
+        android:textColor="#0892d0"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="40dp"
         android:text="@string/already_registered_sign_in_here"
         android:textAlignment="center"
-        android:textColor="#000000" />
+        android:textColor="#ffffff" />
 
 
 </RelativeLayout>
