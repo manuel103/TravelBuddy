@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    tools:ignore="VectorDrawableCompat">
 
 
     <!--<ImageView-->
@@ -15,105 +17,212 @@
         <!--app:srcCompat="@drawable/mpay_logo" />-->
 
 
-    <EditText
-        android:id="@+id/et_email"
-        android:drawableLeft="@drawable/ic_action_name"
-        android:textColor="#ffffff"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:backgroundTint="#ffffff"
-        android:hint="Enter your email"
-        android:textColorHint="#4EFFFFFF"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bgHeader"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:elevation="5dp"
+        android:background="@drawable/header_login"/>
 
     <TextView
-        android:id="@+id/tv_reg_email"
+        android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="5dp"
-        android:text="Email"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/et_password"
-        android:textColor="#ffffff"
-        android:drawableLeft="@drawable/icon_password"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_email"
-        android:layout_alignStart="@+id/et_email"
-        android:layout_below="@+id/et_email"
-        android:layout_marginTop="55dp"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:backgroundTint="#ffffff"
-        android:hint="Input Password"
-        android:textColorHint="#4EFFFFFF"/>
-    
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBoxRememberMe"
-        android:layout_marginTop="220dp"
-        android:textColor="#ffffff"
-        android:text="@string/check_remember"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_password"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:elevation="5dp"
+        android:text="Welcome to travel buddy"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/tv_reg_password"
+        android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_reg_email"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="5dp"
-        android:text="Password"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
-
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_getstarted"
-        android:textColor="#0892d0"
-        android:textSize="20sp"
-        android:layout_below="@+id/et_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_below="@+id/tvDesc"
+        android:transitionName="tvLogin"
+        android:layout_alignLeft="@+id/tvDesc"
+        android:elevation="5dp"
         android:text="Login"
-        app:layout_constraintTop_toBottomOf="@id/checkBoxRememberMe"/>
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textSize="15sp"
-        android:textColor="#ffffff"
-        android:text="@string/don_t_have_an_account_sign_up" />
+    <ImageView
+        android:id="@+id/circle1"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_below="@+id/bgHeader"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-80dp"
+        android:layout_marginRight="-100dp"
+        android:src="@drawable/circletransparant" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:textSize="15sp"
-        android:textColor="#ffffff"
-        android:text="@string/forgot_password" />
+    <ImageView
+        android:id="@+id/circle2"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="-100dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/circletransparant" />
+
+    <ImageView
+        android:id="@+id/circle3"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="-80dp"
+        android:layout_marginBottom="-30dp"
+        android:src="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/circle4"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="-50dp"
+        android:layout_marginBottom="-50dp"
+        android:layout_toLeftOf="@+id/circle3"
+        android:src="@drawable/circletransparant" />
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bgHeader">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="50dp">
+
+                    <TextView
+                        android:id="@+id/tv_reg_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textSize="14sp"
+                        android:text="Email"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:id="@+id/tv_reg_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Password"
+                        android:textColor="@color/colorPurple"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:inputType="textPassword" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv"
+                android:layout_alignLeft="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginRight="35dp"
+                android:elevation="10dp">
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_ui"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/cv"
+                android:layout_alignRight="@+id/cv"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="-20dp"
+                android:elevation="10dp">
+
+                <!--<ImageButton-->
+                    <!--android:id="@+id/btRegister"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:background="@drawable/bg_ui"-->
+                    <!--android:src="@drawable/ic_add" />-->
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvForgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:elevation="5dp"
+                android:textColor="#000000"
+                android:text="Forgot your password?"
+                android:textSize="14sp" />
+
+            <!--<Button-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/tvForgot"-->
+                <!--android:layout_alignLeft="@+id/cv"-->
+                <!--android:layout_alignRight="@+id/cv"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:background="@drawable/bt_uifb"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:paddingRight="20dp"-->
+                <!--android:text="LOGIN WITH FACEBOOK"-->
+                <!--android:textColor="@color/colorPurple" />-->
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="350dp"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:text="@string/don_t_have_an_account_sign_up" />
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
