@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -22,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -36,6 +39,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView textViewSignin;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private RelativeLayout rlayout;
+    private Animation animation;
+
+
+    //private TextInputLayout etEmail;
+    //private TextInputLayout textInputUsername;
+    //private TextInputLayout etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,43 +75,70 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         // Hide the action bar
         getSupportActionBar().hide();
 
-        // Activate gradient animations in Register Activity
 
-//        RelativeLayout relativeLayout = findViewById(R.id.gradient);
-//        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
-//        animationDrawable.setEnterFadeDuration(2000);
-//        animationDrawable.setExitFadeDuration(4000);
-//        animationDrawable.start();
-
-        btnRegister = (Button) findViewById(R.id.btn_register);
-        //etName = (EditText) findViewById(R.id.et_name);
-        etEmail = (EditText) findViewById(R.id.et_reg_email);
-        etPassword = (EditText) findViewById(R.id.et_reg_password);
-        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        btnRegister = findViewById(R.id.btn_register);
+        etName = findViewById(R.id.textInputUsername);
+        etEmail = findViewById(R.id.et_reg_email);
+        etPassword = findViewById(R.id.et_reg_password);
+        textViewSignin = findViewById(R.id.textViewSignin);
 
         btnRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
+
+        //set animations for scene switching
+        rlayout = findViewById(R.id.rlayout);
+        animation = AnimationUtils.loadAnimation(this,R.anim.uptodowndiagonal);
+        rlayout.setAnimation(animation);
     }
 
     public void registerUser(){
+
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        String username = etName.getText().toString().trim();
 
         // Check if the entered strings are empty or not
         if(TextUtils.isEmpty(email)){
 
             //if email is empty
-            Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show();
 
-            // kuzuia function from executing any further
+            etEmail.setError("Field can't be empty");
+
+            //Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show();
+
+            // preventing function from executing any further
             return;
+
+        } else {
+            etEmail.setError(null);
+            //return;
         }
+
         if(TextUtils.isEmpty(password)){
 
             //if password is empty
-            Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+
+            etPassword.setError("Field can't be empty");
+            //Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
             return;
+        }else{
+            etPassword.setError(null);
         }
+
+        if(TextUtils.isEmpty(username)){
+
+            etName.setError("Field can't be empty");
+            //if password is empty
+            //Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (username.length() > 15){
+            etName.setError("Username too long");
+            return;
+        }else {
+            etName.setError(null);
+        }
+
+
         //if validations are ok...First Show progress dialog!
         progressDialog.setMessage("Processing please wait ...");
         progressDialog.show();

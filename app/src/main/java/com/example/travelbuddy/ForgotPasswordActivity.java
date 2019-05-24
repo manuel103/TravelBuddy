@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,20 +14,23 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener{
 
     Toolbar toolbar;
     ProgressBar progressBar;
     EditText userEmail;
     Button userPass;
+    private TextView textViewSignin;
 
     FirebaseAuth firebaseAuth;
+
 
 
     @Override
@@ -50,7 +54,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.et_ChangePass);
         userPass = findViewById(R.id.forgotPass);
 
-        toolbar.setTitle("Forgot Password");
+        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        textViewSignin.setOnClickListener(this);
+
+        //toolbar.setTitle("Forgot Password");
         firebaseAuth = FirebaseAuth.getInstance();
 
 
@@ -90,5 +97,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == textViewSignin){
+            //Opening Login Activity after registration
+            startActivity(new Intent(this, Login.class));
+
+        }
     }
 }
