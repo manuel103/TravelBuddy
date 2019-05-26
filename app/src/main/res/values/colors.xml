@@ -15,9 +15,9 @@
 
 
     <color name="colorWhite">#ffffff</color>
-    <color name="colorPurple">#983CFF</color>
-    <color name="colorPurpleT">#64983cff</color>
-    <color name="colorBlue">#2FB4FF</color>
-    <color name="colorBlueT">#642fb4ff</color>
+    <color name="colorPurple">#00a3f7</color>
+    <color name="colorPurpleT">#00a3f7</color>
+    <color name="colorBlue">#00CBC3</color>
+    <color name="colorBlueT">#00CBC3</color>
 
 </resources>
