@@ -144,6 +144,16 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBoxRememberMe"
+                        android:textColor="#4D4848"
+                        android:text="@string/check_remember"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="15dp"/>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -196,7 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="380dp"
                 android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:text="@string/don_t_have_an_account_sign_up" />
