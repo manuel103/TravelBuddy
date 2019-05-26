@@ -20,6 +20,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private FirebaseAuth firebaseAuth;
     private TextView textViewUserEmail;
     private Button buttonLogout;
+    TextView textView;
+
 
     //DB reference to store data on firebase
     private DatabaseReference databaseReference;
@@ -42,16 +44,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //firebase DB reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        buttonSave = (Button) findViewById(R.id.buttonSave);
+        editTextAddress = findViewById(R.id.editTextAddress);
+        editTextName = findViewById(R.id.editTextName);
+        buttonSave = findViewById(R.id.buttonSave);
+
+        textView = findViewById(R.id.textViewVerified);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
+        textViewUserEmail =  findViewById(R.id.textViewUserEmail);
 
         textViewUserEmail.setText("Welcome "+user.getEmail());
 
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        buttonLogout = findViewById(R.id.buttonLogout);
 
         //adding listeners to buttons
         buttonLogout.setOnClickListener(this);

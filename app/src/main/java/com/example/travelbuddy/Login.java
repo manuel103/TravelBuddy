@@ -22,17 +22,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+//import okhttp3.FormBody;
+//import okhttp3.OkHttpClient;
+//import okhttp3.Request;
+//import okhttp3.RequestBody;
+//import okhttp3.Response;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     EditText etEmail, etPassword;
     TextView tvRegister;
     Button btnLogin;
+    TextView forgotPass;
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -48,6 +49,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         // Hide the action bar
         getSupportActionBar().hide();
+
+        //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -68,11 +71,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         etPassword = (EditText) findViewById(R.id.et_password);
         btnLogin = (Button) findViewById(R.id.btn_login);
         tvRegister = (TextView) findViewById(R.id.tv_register);
+        forgotPass = (TextView) findViewById(R.id.tvForgot);
 
         progressDialog = new ProgressDialog(this);
 
         btnLogin.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
+        forgotPass.setOnClickListener(this);
 
 }
 
@@ -112,7 +117,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
 
-
     }
 
     @Override
@@ -126,6 +130,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             startActivity(new Intent(this, RegisterActivity.class));
         }
 
+        if(view == forgotPass){
+            finish();
+            startActivity(new Intent(this, ForgotPasswordActivity.class));
+        }
+
     }
+
 
 }
