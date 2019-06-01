@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_home2_page);
 
 
         firebaseAuth = FirebaseAuth.getInstance();

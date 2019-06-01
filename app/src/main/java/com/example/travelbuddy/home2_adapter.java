@@ -19,15 +19,15 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.Viewholder> {
+public class home2_adapter extends RecyclerView.Adapter<home2_adapter.Viewholder> {
 
-    private static final String TAG = "Home_Adapter";
+    private static final String TAG = "home2_adapter";
 
     private ArrayList<String>mNames;
     private ArrayList<String>MimageUrls;
     private Context mcontext;
 
-    public Home_Adapter(  Context context, ArrayList<String> mNames, ArrayList<String> mimageUrls) {
+    public home2_adapter(  Context context, ArrayList<String> mNames, ArrayList<String> mimageUrls) {
         this.mNames = mNames;
         MimageUrls = mimageUrls;
         this.mcontext = context;
@@ -35,31 +35,31 @@ public class Home_Adapter extends RecyclerView.Adapter<Home_Adapter.Viewholder> 
 
 
     @Override
-    public Home_Adapter.Viewholder onCreateViewHolder( ViewGroup parent, int viewType) {
+    public home2_adapter.Viewholder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.home_layout, parent, false);
+                .inflate(R.layout.home2_layout, parent, false);
         Viewholder holder = new Viewholder(view);
-         return new Viewholder(view);
+        return new Viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Home_Adapter.Viewholder holder, final int position) {
+    public void onBindViewHolder(@NonNull home2_adapter.Viewholder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
 
         RequestOptions requestOptions = new RequestOptions()
-        .placeholder(R.drawable.ic_launcher_background);
+                .placeholder(R.drawable.ic_launcher_background);
         Glide.with(mcontext)
                 .load(MimageUrls.get(position))
                 .apply(requestOptions)
                 .into(holder.imageView);
         holder.textView.setText(mNames.get(position));
         holder.imageView.setOnClickListener(new View.OnClickListener(){
-            
-            @Override
-            public void onClick(View view){
-                Log.d(TAG, "onClick: Clicked on" + mNames.get(position));
-                Toast.makeText(mcontext, mNames.get(position), Toast.LENGTH_SHORT).show();
-            }
+
+                                                @Override
+                                                public void onClick(View view){
+                                                    Log.d(TAG, "onClick: Clicked on" + mNames.get(position));
+                                                    Toast.makeText(mcontext, mNames.get(position), Toast.LENGTH_SHORT).show();
+                                                }
 
                                             }
 

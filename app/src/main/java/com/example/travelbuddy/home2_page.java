@@ -11,9 +11,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-public class home_page extends AppCompatActivity {
+public class home2_page extends AppCompatActivity {
 
-    private static final String TAG = "home_page";
+    private static final String TAG = "home2_page";
     private static final int NUM_COLUMNS = 2;
 
     private ArrayList<String> mNames = new ArrayList<>();
@@ -23,7 +23,7 @@ public class home_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_home2_page);
 
         initImageBitmaps();
     }
@@ -31,8 +31,8 @@ public class home_page extends AppCompatActivity {
 
     public void initImageBitmaps(){
         Log.d(TAG, "initImageBitmaps: preparing bitmaps");
-         MimageUrls.add("https://images.app.goo.gl/FQfdXRQHKFiSn6pd8");
-         mNames.add("MaasaiMara");
+        MimageUrls.add("https://images.app.goo.gl/FQfdXRQHKFiSn6pd8");
+        mNames.add("MaasaiMara");
         MimageUrls.add("https://images.app.goo.gl/5WLNGwPpf7RPLJsU8");
         mNames.add("Mt.Kenya");
         MimageUrls.add("https://images.app.goo.gl/aNMdcCJEUZ6ZMK5j8");
@@ -51,7 +51,7 @@ public class home_page extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView: initializing staggered recyclerview.");
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        Home_Adapter home_adapter = new Home_Adapter( context, mNames, MimageUrls);
+        home2_adapter home_adapter = new home2_adapter( context, mNames, MimageUrls);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUM_COLUMNS, LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setAdapter(home_adapter);
