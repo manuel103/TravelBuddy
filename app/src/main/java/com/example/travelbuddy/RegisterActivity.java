@@ -3,10 +3,8 @@ package com.example.travelbuddy;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,67 +12,42 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.travelbuddy.activities.LoginActivity;
+import com.example.travelbuddy.api.RetrofitClient;
+import com.example.travelbuddy.models.DefaultResponse;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
-
     EditText etName, etEmail, etPassword;
     Button btnRegister;
     private TextView textViewSignin;
     private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
     private RelativeLayout rlayout;
     private Animation animation;
-
-
-    //private TextInputLayout etEmail;
-    //private TextInputLayout textInputUsername;
-    //private TextInputLayout etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // make the activity full screen
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        //if user is already logged, just take them to their profile
-        if(firebaseAuth.getCurrentUser() != null){
-            // profile activity
-
-            finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-
-        }
         progressDialog = new ProgressDialog(this);
 
         // Hide the action bar
         getSupportActionBar().hide();
-
 
         btnRegister = findViewById(R.id.btn_register);
         etName = findViewById(R.id.textInputUsername);
@@ -82,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etPassword = findViewById(R.id.et_reg_password);
         textViewSignin = findViewById(R.id.textViewSignin);
 
+        //onclick listeners
         btnRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
 
@@ -93,83 +67,80 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void registerUser(){
 
+        //Code to register user
+
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
-        String username = etName.getText().toString().trim();
+        String user_name = etName.getText().toString().trim();
 
-        // Check if the entered strings are empty or not
-        if(TextUtils.isEmpty(email)){
-
-            //if email is empty
-
-            etEmail.setError("Field can't be empty");
-
-            //Toast.makeText(this, "Enter a valid email", Toast.LENGTH_SHORT).show();
-
-            // preventing function from executing any further
+        if (email.isEmpty()) {
+            etEmail.setError("Email is required");
+            etEmail.requestFocus();
             return;
-
-        } else {
-            etEmail.setError(null);
-            //return;
         }
 
-        if(TextUtils.isEmpty(password)){
-
-            //if password is empty
-
-            etPassword.setError("Field can't be empty");
-            //Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Enter a valid email");
+            etEmail.requestFocus();
             return;
-        }else{
-            etPassword.setError(null);
         }
 
-        if(TextUtils.isEmpty(username)){
+        if (password.isEmpty()) {
+            etPassword.setError("Password required");
+            etPassword.requestFocus();
+            return;
+        }
 
-            etName.setError("Field can't be empty");
-            //if password is empty
-            //Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+        if (password.length() < 6) {
+            etPassword.setError("Password should be at least 6 characters long");
+            etPassword.requestFocus();
             return;
-        }else if (username.length() > 15){
-            etName.setError("Username too long");
+        }
+
+        if (user_name.isEmpty()) {
+            etName.setError("Username required");
+            etName.requestFocus();
             return;
-        }else {
-            etName.setError(null);
         }
 
 
-        //if validations are ok...First Show progress dialog!
-        progressDialog.setMessage("Processing please wait ...");
-        progressDialog.show();
+        Call<DefaultResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .createUser(email, password, user_name);
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            // if user is successfully registered and logged in
-                            // @ Magnus, start the profile from here
 
-                           finish();
-                                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                if (response.code() == 201) {
 
-                        }else {
-                            Toast.makeText(RegisterActivity.this, "Registration Failed! Please Try Again", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
+                    DefaultResponse dr = response.body();
+                    Toast.makeText(RegisterActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 
-                        }
-                    }
-                });
+                } else if (response.code() == 422) {
+                    Toast.makeText(RegisterActivity.this, "This user already exists", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+                Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
+
     @Override
     public void onClick(View view) {
         if(view == btnRegister){
             registerUser();
         }
         if(view == textViewSignin){
-            //Opening Login Activity after registration
-            startActivity(new Intent(this, Login.class));
+            //Opening LoginActivity Activity after registration
+            startActivity(new Intent(this, LoginActivity.class));
 
         }
     }

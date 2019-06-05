@@ -1,4 +1,4 @@
-package com.example.travelbuddy;
+package com.example.travelbuddy.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.travelbuddy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,8 +103,8 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
         if(v == textViewSignin){
-            //Opening Login Activity after registration
-            startActivity(new Intent(this, Login.class));
+            //Opening LoginActivity Activity after registration
+            startActivity(new Intent(this, LoginActivity.class));
 
         }
     }

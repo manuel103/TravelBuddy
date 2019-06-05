@@ -1,4 +1,4 @@
-package com.example.travelbuddy;
+package com.example.travelbuddy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
-import java.util.ArrayList;
+import com.example.travelbuddy.R;
+import com.example.travelbuddy.activities.home2_adapter;
 
 public class home2_page extends AppCompatActivity {
 

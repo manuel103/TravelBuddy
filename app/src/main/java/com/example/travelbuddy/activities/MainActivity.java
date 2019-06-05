@@ -1,7 +1,9 @@
-package com.example.travelbuddy;
+package com.example.travelbuddy.activities;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.travelbuddy.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.travelbuddy;
+package com.example.travelbuddy.activities;
 
 import android.content.Context;
 import android.util.Log;
@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 //import org.w3c.dom.Text;
 
 //import java.util.ArrayList;
+
+import com.example.travelbuddy.R;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 

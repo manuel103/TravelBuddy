@@ -1,4 +1,4 @@
-package com.example.travelbuddy;
+package com.example.travelbuddy.activities;
 
 
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.travelbuddy.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent loginActivity = new Intent(getApplicationContext(),Login.class );
+            Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class );
 
             //Intent dashboardActivity = new Intent(getApplicationContext(),DashboardActivity.class );
             startActivity(loginActivity);
@@ -136,7 +137,7 @@ public class IntroActivity extends AppCompatActivity {
                 //open main activity
 
                 // Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
-                Intent RegisterActivity = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent RegisterActivity = new Intent(getApplicationContext(), com.example.travelbuddy.RegisterActivity.class);
                 startActivity(RegisterActivity);
                 // startActivity(loginActivity);
 
