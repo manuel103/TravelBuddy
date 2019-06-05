@@ -48,7 +48,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home2_page);
+        setContentView(R.layout.activity_login);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -62,11 +62,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         }
 
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPassword = (EditText) findViewById(R.id.et_password);
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        tvRegister = (TextView) findViewById(R.id.tv_register);
-        forgotPass = (TextView) findViewById(R.id.tvForgot);
+        etEmail = findViewById(R.id.et_email);
+        etPassword = findViewById(R.id.et_password);
+        btnLogin = findViewById(R.id.btn_login);
+        tvRegister = findViewById(R.id.tv_register);
+        forgotPass = findViewById(R.id.tvForgot);
 
         progressDialog = new ProgressDialog(this);
 

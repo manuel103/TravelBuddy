@@ -16,6 +16,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 //
 dependencies {
@@ -46,3 +48,9 @@ dependencies {
 
 }
 apply plugin: 'com.google.gms.google-services'
+
+android {
+    defaultConfig {
+        applicationId "com.example.travelbuddy"
+    }
+}
