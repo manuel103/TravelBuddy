@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.example.travelbuddy.RegisterActivity;
 
 import androidx.annotation.NonNull;
@@ -29,8 +31,8 @@ import static java.security.AccessController.getContext;
 
 public class UserProfile extends AppCompatActivity {
 
-    ImageView image_profile,options;
-    TextView posts, followers, following, fullname, bio, username, etName;
+    ImageView image_profile;
+    TextView posts, fullname, username, etName;
     Button edit_profile;
 
     FirebaseUser firebaseUser;
@@ -44,28 +46,21 @@ public class UserProfile extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //SharedPreferences prefs = getContext().getSharedPreferences ("PREPS", Context.MODE_PRIVATE);
-      //  profileid = prefs.getString( S:"profileid", s1:"none");
-
         SharedPreferences preferences = getSharedPreferences("PREPS",Context.MODE_PRIVATE);
         profileid = preferences.getString("profileid","none");
 
 
         image_profile = view.findViewById(R.id.image_profile);
-        //options = view.findViewById(R.id.options);
         posts = view.findViewById(R.id.posts);
-        followers = view.findViewById(R.id.followers);
-        following = view.findViewById(R.id.following);
         fullname = view.findViewById(R.id.fullname);
-        bio = view.findViewById(R.id.bio);
         username = view.findViewById(R.id.username);
         edit_profile = view.findViewById(R.id.edit_profile);
         my_photos = view.findViewById(R.id.my_photos);
         saved_photos = view.findViewById(R.id.saved_photos);
 
         userInfo();
-        getFollowers();
-       // getNrPosts();
+        //getFollowers();
+        //getNrPosts();
 
         if (profileid.equals(firebaseUser.getUid())){
             edit_profile.setText("Edit Profile");
@@ -111,10 +106,9 @@ public class UserProfile extends AppCompatActivity {
                 }
                 RegisterActivity user = dataSnapshot.getValue(RegisterActivity.class);
 
-               // Glide.with(getContext()).load(user.getImageurl()).into(image_profile);
+              // Glide.with(getContext()).load(user.getImageurl()).into(image_profile);
                 etName.setText((CharSequence) user.etName);
                 //fullname.setText(user.getFullname());
-               // bio.setText(user.getBio());
             }
 
 
@@ -143,55 +137,55 @@ public class UserProfile extends AppCompatActivity {
             }
         });
     }
-    public void getFollowers() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Follow")
-                .child(profileid).child("followers");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    followers.setText(""+dataSnapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Follow")
-                .child(profileid).child("following");
-        reference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                following.setText(""+dataSnapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-   /* private void getNrPosts(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
-                    if (post.getPublisher().equals(profileid)){
-                        i++;
-                    }
-                }
-                posts.setText(""+i);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
+//    public void getFollowers() {
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Follow")
+//                .child(profileid).child("followers");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    followers.setText(""+dataSnapshot.getChildrenCount());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Follow")
+//                .child(profileid).child("following");
+//        reference1.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                following.setText(""+dataSnapshot.getChildrenCount());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//    }
+//    private void getNrPosts(){
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                int i = 0;
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    Post post = snapshot.getValue(Post.class);
+//                    if (post.getPublisher().equals(profileid)){
+//                        i++;
+//                    }
+//                }
+//                posts.setText(""+i);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 }
